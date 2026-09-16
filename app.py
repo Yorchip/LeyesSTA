@@ -105,7 +105,7 @@ def obtener_embedding(texto: str):
         contents=texto,
         config={"output_dimensionality": DIMENSION_EMBEDDING},
     )
-    return resultado.embeddings.values
+    return resultado.embeddings[0].values
 
 def buscar_contexto(vector_consulta) -> str:
     resultados = indice_pinecone.query(
