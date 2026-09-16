@@ -3,3 +3,4 @@ pinecone
 langchain-text-splitters
 python-dotenv
 streamlit
+pillow
