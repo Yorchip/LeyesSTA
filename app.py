@@ -161,7 +161,7 @@ if pregunta_usuario:
             configuracion_ia = GenerateContentConfig(
                 system_instruction=INSTRUCCION_SISTEMA,
                 max_output_tokens=280,  # 🛑 Margen para incluir excepciones/condiciones sin disparar la longitud
-                thinking_level = "MINIMAL"         # 🎯 Evita que la IA invente o decore las respuestas
+                temperature=0.0         # 🎯 Evita que la IA invente o decore las respuestas
             )
 
             # 3. Llamada en Streaming para respuesta instantánea
