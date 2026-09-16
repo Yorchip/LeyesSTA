@@ -22,7 +22,7 @@ AVATAR_ASISTENTE = RUTA_LOGO if LOGO_DISPONIBLE else "🤖"
 # ------------------------------------------------------------------
 # Configuración de página
 # ------------------------------------------------------------------
-st.set_page_config(page_title="Asistente Legal", page_icon=icono_pagina)
+st.set_page_config(page_title="Asistente legal PLV", page_icon=icono_pagina)
 
 # ------------------------------------------------------------------
 # Bloqueo de seguridad por contraseña
