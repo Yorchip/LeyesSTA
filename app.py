@@ -82,7 +82,8 @@ def obtener_embedding(texto: str):
         contents=texto,
         config={"output_dimensionality": DIMENSION_EMBEDDING},
     )
-    return resultado.embeddings.values
+    # CORREGIDO: Accedemos al primer elemento de la lista devuelta por Google
+    return resultado.embeddings[0].values
 
 def buscar_contexto(vector_consulta) -> str:
     resultados = indice_pinecone.query(
@@ -143,11 +144,12 @@ if pregunta_usuario:
             )
             
             for chunk in response_stream:
-                texto_acumulado += chunk.text
-                response_placeholder.markdown(texto_acumulado)
+                if chunk.text:
+                    texto_acumulado += chunk.text
+                    response_placeholder.markdown(texto_acumulado)
                 
         except Exception as error:
-            texto_acumulado = f"Consulta pausada por saturación en la red. Por favor, reintenta en un momento. ({error})"
+            texto_acumulado = f"Consulta pausada por saturación en la red o error técnico. Por favor, reintenta en un momento. ({error})"
             response_placeholder.markdown(texto_acumulado)
 
     st.session_state.mensajes.append({"role": "assistant", "content": texto_acumulado})
