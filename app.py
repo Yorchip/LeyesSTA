@@ -262,7 +262,7 @@ if pregunta_usuario:
             # 2. Configurar límites estrictos de tokens y creatividad a cero (precisión absoluta)
             configuracion_ia = GenerateContentConfig(
                 system_instruction=INSTRUCCION_SISTEMA,
-                max_output_tokens=450,  # 🛑 Margen para cálculos paso a paso (corrección + tabla) sin cortar la respuesta
+                max_output_tokens=800,  # 🛑 Margen para cálculos paso a paso (corrección + tabla) sin cortar la respuesta
                 temperature=0.0         # 🎯 Evita que la IA invente o decore las respuestas
             )
 
