@@ -4,6 +4,7 @@ from google.genai.types import HttpOptions, GenerateContentConfig
 from pinecone import Pinecone
 from pathlib import Path
 from PIL import Image
+from datetime import datetime, timedelta
 
 # ------------------------------------------------------------------
 # Logo del proyecto
@@ -84,6 +85,8 @@ MODELO_EMBEDDING = "gemini-embedding-001"
 MODELO_GENERACION = "gemini-3.5-flash-lite"  # ⚡ El modelo más rápido y resistente del catálogo
 DIMENSION_EMBEDDING = 768
 NUM_FRAGMENTOS_CONTEXTO = 3  # 📈 Subido a 3 para no perder excepciones o condiciones en fragmentos distintos
+VENTANA_HISTORIAL = 8  # 🧠 Nº de mensajes previos (aprox. 4 turnos) que se envían como contexto conversacional
+LIMITE_INACTIVIDAD = timedelta(minutes=60)  # ⏱️ Tras este tiempo sin interacción, se reinicia la conversación
 
 INSTRUCCION_SISTEMA = """
 Eres un asistente legal de tráfico. Tienes DOS fuentes de conocimiento, que no deben mezclarse:
@@ -165,7 +168,7 @@ Reglas de respuesta:
    - Responsable: ... (solo si se puede determinar)
    - Comentario: SOLO si aporta algo nuevo no dicho ya arriba (p. ej. "posible vía penal si hay síntomas"). Si no hay nada que añadir, omite esta línea por completo.
 6. Algunas infracciones de tráfico pueden ser también constitutivas de delito. Compruébalo siempre; si es el caso, puedes hacer la respuesta un poco más extensa para explicarlo.
-7. REGLA DE ORO: si el usuario plantea un caso general (por ejemplo, exceso de velocidad, alcoholemia, lesiones) pero faltan datos críticos para determinar con exactitud si es infracción leve, grave o delito penal, NO des una respuesta definitiva ni inventes datos. Pide de forma educada y directa los 2 o 3 datos imprescindibles para el cálculo (por ejemplo: velocidad máxima permitida en la vía, velocidad exacta marcada por el cinemómetro, tipo de radar —fijo o móvil— y tipo de vía —urbana o interurbana—). Sé breve en tus preguntas; no des una lista larga, limítate a lo estrictamente necesario para el siguiente paso legal.
+7. REGLA DE ORO (aplica en cualquiera de los tres modos): si el usuario plantea un caso pero faltan datos críticos para responder con precisión (por ejemplo, en tráfico: velocidad límite, velocidad marcada, tipo de radar, tipo de vía; en código penal general: circunstancias del hecho relevantes para calificarlo; en seguridad ciudadana: circunstancias que determinan la calificación leve/grave/muy grave), NO des una respuesta definitiva ni inventes datos. Pide de forma educada y directa los 1-3 datos imprescindibles para el siguiente paso, en una sola frase, sin listas largas de preguntas.
 8. Puedes citar fragmentos del CONTEXTO documental cuando ayude a precisar la respuesta (por ejemplo, la redacción exacta de un artículo). Evita transcribir el documento completo o extensiones innecesarias; cíñete a lo relevante para la pregunta.
 9. ORDEN DE EJECUCIÓN OBLIGATORIO para casos de alcoholemia o velocidad: primero aplica SIEMPRE la corrección de B.1 al dato medido/leído que dé el usuario; después, con el valor ya corregido (o la tasa leída si B.3 así lo indica), localiza el tramo correspondiente en B.2, B.3 o B.4. Nunca apliques la regla 4 ("no disponible") sin haber completado antes estos dos pasos.
 10. Prohibido repetir un mismo dato (tasa, velocidad, cuantía, etc.) en más de una línea de la respuesta. Cada dato aparece una sola vez, en su línea correspondiente.
@@ -208,6 +211,19 @@ with columna_titulo:
 if "mensajes" not in st.session_state:
     st.session_state.mensajes = []
 
+if "ultima_interaccion" not in st.session_state:
+    st.session_state.ultima_interaccion = datetime.now()
+
+if datetime.now() - st.session_state.ultima_interaccion > LIMITE_INACTIVIDAD:
+    st.session_state.mensajes = []
+
+st.session_state.ultima_interaccion = datetime.now()
+
+with st.sidebar:
+    if st.button("🗑️ Nueva conversación"):
+        st.session_state.mensajes = []
+        st.rerun()
+
 # Mostrar el historial de la sesión
 for mensaje in st.session_state.mensajes:
     avatar = AVATAR_ASISTENTE if mensaje["role"] == "assistant" else None
@@ -230,7 +246,18 @@ if pregunta_usuario:
             # 1. Recuperar contexto numérico
             vector_pregunta = obtener_embedding(pregunta_usuario)
             contexto = buscar_contexto(vector_pregunta)
-            prompt = f"CONTEXTO:\n{contexto}\n\nPREGUNTA:\n{pregunta_usuario}"
+            prompt_actual = f"CONTEXTO:\n{contexto}\n\nPREGUNTA:\n{pregunta_usuario}"
+
+            # 1b. Construir la ventana de historial conversacional (sin la pregunta actual,
+            #     que ya está incluida en session_state.mensajes y se añade al final con su contexto)
+            mensajes_previos = st.session_state.mensajes[:-1][-VENTANA_HISTORIAL:]
+            contents_conversacion = []
+            for mensaje_previo in mensajes_previos:
+                rol_gemini = "model" if mensaje_previo["role"] == "assistant" else "user"
+                contents_conversacion.append(
+                    {"role": rol_gemini, "parts": [{"text": mensaje_previo["content"]}]}
+                )
+            contents_conversacion.append({"role": "user", "parts": [{"text": prompt_actual}]})
 
             # 2. Configurar límites estrictos de tokens y creatividad a cero (precisión absoluta)
             configuracion_ia = GenerateContentConfig(
@@ -242,7 +269,7 @@ if pregunta_usuario:
             # 3. Llamada en Streaming para respuesta instantánea
             response_stream = cliente_gemini.models.generate_content_stream(
                 model=MODELO_GENERACION,
-                contents=prompt,
+                contents=contents_conversacion,
                 config=configuracion_ia
             )
 
