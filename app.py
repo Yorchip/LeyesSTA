@@ -263,7 +263,7 @@ if pregunta_usuario:
             configuracion_ia = GenerateContentConfig(
                 system_instruction=INSTRUCCION_SISTEMA,
                 max_output_tokens=800,  # 🛑 Margen para cálculos paso a paso (corrección + tabla) sin cortar la respuesta
-                temperature=0.0         # 🎯 Evita que la IA invente o decore las respuestas
+                temperature=0.4         # 🎯 Evita que la IA invente o decore las respuestas
             )
 
             # 3. Llamada en Streaming para respuesta instantánea
