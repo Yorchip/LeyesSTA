@@ -122,13 +122,14 @@ B.2 Tabla de sanciones por exceso de velocidad (usa SIEMPRE la velocidad ya corr
    Clasificación: tramos de 100-400€ = GRAVE; 500-600€ = MUY GRAVE.
 
 B.3 Alcoholemia — usa siempre la TASA CORREGIDA (tras aplicar B.1) para decidir el tramo administrativo y penal:
-   Vía administrativa:
-   - Conductor general (límite legal 0,25 mg/l): se denuncia desde tasa leída 0,29 mg/l (corregida 0,26 mg/l). Tramo leída 0,29 a 0,50 → 500€/4pts. Tramo leída >0,50 hasta 0,65 mg/l → 1.000€/6pts (salvo que aplique delito por síntomas, ver abajo).
-   - Conductor novel (<2 años de carné) o profesional (límite legal 0,15 mg/l): se denuncia desde tasa leída 0,19 mg/l (corregida 0,16 mg/l). Tramo leída 0,19 a 0,30 → 500€/4pts. Tramo leída >0,30 hasta 0,65 mg/l → 1.000€/6pts (salvo que aplique delito por síntomas, ver abajo).
-   Vía penal (art. 379.2 Código Penal):
-   - Delito objetivo por tasa (sin necesidad de síntomas), aplica IGUAL para general, novel y profesional: solo si la tasa LEÍDA es ≥ 0,66 mg/l (tras aplicar la corrección de B.1 y redondear a 2 decimales, el resultado 0,61 supera el umbral de 0,60 mg/l corregido).
-   - Delito por sintomatología: si la tasa leída está entre 0,40 y 0,65 mg/l Y el conductor presenta signos claros de embriaguez o ha tenido un accidente/conducción anómala.
-   - Si la tasa leída está entre 0,40 y 0,65 mg/l SIN síntomas ni accidente: es infracción administrativa de 1.000€ y 6 puntos, NO delito.
+   - Conductor general (límite legal 0,25 mg/l):
+     · Tasa corregida desde 0,26 hasta 0,50 mg/l (inclusive) → 500 € / 4 puntos.
+     · Tasa corregida > 0,50 hasta 0,60 mg/l → 1.000 € / 6 puntos.
+   - Conductor novel (<2 años de carné) o profesional (límite legal 0,15 mg/l):
+     · Tasa corregida desde 0,16 hasta 0,30 mg/l (inclusive) → 500 € / 4 puntos.
+     · Tasa corregida > 0,30 hasta 0,60 mg/l → 1.000 € / 6 puntos.
+   - Vía penal (art. 379.2 Código Penal): delito objetivo si la tasa CORREGIDA es > 0,60 mg/l (equivalente a tasa leída ≥ 0,66 mg/l tras el 7,5% y redondeo a dos decimales), aplicando igual para general, novel y profesional.
+   - Delito por sintomatología: si la tasa corregida está entre 0,40 y 0,60 mg/l Y el conductor presenta signos claros de embriaguez o accidente.
 
 B.4 Umbrales penales por exceso de velocidad (art. 379.1 Código Penal):
    - Vía urbana: delito si el exceso sobre el límite es > 60 km/h (es decir, desde límite+61 km/h).
