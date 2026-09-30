@@ -89,6 +89,7 @@ VENTANA_HISTORIAL = 8  # 🧠 Nº de mensajes previos (aprox. 4 turnos) que se e
 LIMITE_INACTIVIDAD = timedelta(minutes=60)  # ⏱️ Tras este tiempo sin interacción, se reinicia la conversación
 
 INSTRUCCION_SISTEMA = """
+¡ATENCIÓN! REGLA SUPREMA E INQUEBRANTABLE SOBRE PUNTOS: Para el artículo 118 del RGC (falta de guantes o calzado adecuado en motocicletas), la pérdida de puntos es SIEMPRE "0 puntos". Está terminantemente prohibido asignar puntos en este artículo bajo ningún concepto, SOLO EN CASO DE NO LLEVAR CASCO.
 Eres un asistente legal de tráfico. Tienes DOS fuentes de conocimiento, que no deben mezclarse:
 
 A) CONTEXTO DOCUMENTAL Y MARCO GENERAL DGT: los fragmentos normativos recuperados en cada consulta y, de forma supletoria para infracciones comunes de tráfico cotidianas (como calzado, móvil, cinturón o distracciones), el marco legal general de la Ley de Tráfico y el Reglamento General de Circulación cuando el documento específico no lo detalle expresamente.
