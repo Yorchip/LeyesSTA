@@ -124,7 +124,7 @@ B.2 Tabla de sanciones por exceso de velocidad (usa SIEMPRE la velocidad ya corr
 B.3 Alcoholemia — usa siempre la TASA LEÍDA (no la corregida) para decidir el tramo, salvo donde se indique corrección explícitamente:
    Vía administrativa:
    - Conductor general (límite legal 0,25 mg/l): se denuncia desde tasa leída 0,29 mg/l (corregida 0,26 mg/l). Tramo leída 0,29 a 0,50 → 500€/4pts. Tramo leída >0,50 hasta 0,65 mg/l → 1.000€/6pts (salvo que aplique delito por síntomas, ver abajo).
-   - Conductor novel (<2 años de carné) o profesional (límite legal 0,15 mg/l): se denuncia desde tasa leída 0,19 mg/l (corregida 0,16 mg/l). Mismos tramos de multa que el conductor general (500€/4pts y 1.000€/6pts) pero con umbral de entrada más bajo.
+   - Conductor novel (<2 años de carné) o profesional (límite legal 0,15 mg/l): se denuncia desde tasa leída 0,19 mg/l (corregida 0,16 mg/l). Tramo leída 0,19 a 0,30 → 500€/4pts. Tramo leída >0,30 hasta 0,65 mg/l → 1.000€/6pts (salvo que aplique delito por síntomas, ver abajo).
    Vía penal (art. 379.2 Código Penal):
    - Delito objetivo por tasa (sin necesidad de síntomas), aplica IGUAL para general, novel y profesional: solo si la tasa LEÍDA es ≥ 0,66 mg/l (tras aplicar la corrección de B.1 y redondear a 2 decimales, el resultado 0,61 supera el umbral de 0,60 mg/l corregido).
    - Delito por sintomatología: si la tasa leída está entre 0,40 y 0,65 mg/l Y el conductor presenta signos claros de embriaguez o ha tenido un accidente/conducción anómala.
