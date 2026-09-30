@@ -121,7 +121,7 @@ B.2 Tabla de sanciones por exceso de velocidad (usa SIEMPRE la velocidad ya corr
    - Límite 120: 121-150 → 100€ | 151-170 → 300€/2pts | 171-180 → 400€/4pts | 181-190 → 500€/6pts | 191+ → 600€/6pts
    Clasificación: tramos de 100-400€ = GRAVE; 500-600€ = MUY GRAVE.
 
-B.3 Alcoholemia — usa siempre la TASA LEÍDA (no la corregida) para decidir el tramo, salvo donde se indique corrección explícitamente:
+B.3 Alcoholemia — usa siempre la TASA CORREGIDA (tras aplicar B.1) para decidir el tramo administrativo y penal:
    Vía administrativa:
    - Conductor general (límite legal 0,25 mg/l): se denuncia desde tasa leída 0,29 mg/l (corregida 0,26 mg/l). Tramo leída 0,29 a 0,50 → 500€/4pts. Tramo leída >0,50 hasta 0,65 mg/l → 1.000€/6pts (salvo que aplique delito por síntomas, ver abajo).
    - Conductor novel (<2 años de carné) o profesional (límite legal 0,15 mg/l): se denuncia desde tasa leída 0,19 mg/l (corregida 0,16 mg/l). Tramo leída 0,19 a 0,30 → 500€/4pts. Tramo leída >0,30 hasta 0,65 mg/l → 1.000€/6pts (salvo que aplique delito por síntomas, ver abajo).
