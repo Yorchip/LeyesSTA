@@ -84,7 +84,7 @@ indice_pinecone = obtener_indice_pinecone()
 MODELO_EMBEDDING = "gemini-embedding-001"
 MODELO_GENERACION = "gemini-3.5-flash-lite"  # ⚡ El modelo más rápido y resistente del catálogo
 DIMENSION_EMBEDDING = 768
-NUM_FRAGMENTOS_CONTEXTO = 3  # 📈 Subido a 3 para no perder excepciones o condiciones en fragmentos distintos
+NUM_FRAGMENTOS_CONTEXTO = 1  # 📈 el sistema recupera el artículo exacto que responde a tu pregunta de golpe, sin que le falte ningún matiz.
 VENTANA_HISTORIAL = 8  # 🧠 Nº de mensajes previos (aprox. 4 turnos) que se envían como contexto conversacional
 LIMITE_INACTIVIDAD = timedelta(minutes=60)  # ⏱️ Tras este tiempo sin interacción, se reinicia la conversación
 
